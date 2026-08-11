@@ -45,7 +45,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-visual site-image">
-            <Image src="/images/hero-floor.jpg" alt="Готовый промышленный бетонный пол в логистическом комплексе" fill priority sizes="(max-width: 800px) 100vw, 46vw" />
+            <Image src="/images/hero-floor.jpg" alt="Готовый промышленный бетонный пол в логистическом комплексе" fill priority unoptimized sizes="(max-width: 800px) 100vw, 46vw" />
           </div>
         </section>
 
@@ -96,7 +96,7 @@ export default function Home() {
 
         <section className="section shell checklist">
           <div className="site-image wide-placeholder">
-            <Image src="/images/concrete-installation.jpg" alt="Устройство промышленной бетонной плиты в производственном здании" fill sizes="(max-width: 800px) 100vw, 50vw" />
+            <Image src="/images/concrete-installation.jpg" alt="Устройство промышленной бетонной плиты в производственном здании" fill unoptimized sizes="(max-width: 800px) 100vw, 50vw" />
           </div>
           <div className="checklist-copy">
             <p className="eyebrow">Перед стартом работ</p>

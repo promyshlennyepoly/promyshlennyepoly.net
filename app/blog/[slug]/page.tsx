@@ -57,7 +57,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const { slug } = await params; const article = articles[slug]; if (!article) notFound();
   return <><SiteHeader /><main className="article-page">
     <header className="article-hero shell"><Link className="back-link" href="/#articles">← Все материалы</Link><p className="eyebrow">{article.category} · {article.readTime}</p><h1>{article.title}</h1><p className="article-intro">{article.intro}</p></header>
-    <div className="shell site-image article-image"><Image src={article.image} alt={article.imageLabel} fill priority sizes="(max-width: 1228px) calc(100vw - 48px), 1180px" /></div>
+    <div className="shell site-image article-image"><Image src={article.image} alt={article.imageLabel} fill priority unoptimized sizes="(max-width: 1228px) calc(100vw - 48px), 1180px" /></div>
     <div className="shell article-layout"><article className="article-body">
       {article.sections.map((section) => <section key={section.title}><h2>{section.title}</h2>{section.paragraphs?.map((p) => <p key={p}>{p}</p>)}{section.list && <ul>{section.list.map((item) => <li key={item}>{item}</li>)}</ul>}{section.note && <aside>{section.note}</aside>}</section>)}
     </article><aside className="article-aside"><span>В этом материале</span><p>Время чтения: {article.readTime}</p><p>Регион: Беларусь</p><p>Обновлено: август 2026</p></aside></div>
