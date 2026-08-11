@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { SiteFooter, SiteHeader } from "../../site-chrome";
 
 type Section = { title: string; paragraphs?: string[]; list?: string[]; note?: string };
-type Article = { title: string; description: string; category: string; readTime: string; intro: string; imageLabel: string; sections: Section[] };
+type Article = { title: string; description: string; category: string; readTime: string; intro: string; imageLabel: string; image: string; sections: Section[] };
 
 const articles: Record<string, Article> = {
   "podgotovka-osnovaniya": {
     title: "Подготовка основания под промышленный бетонный пол",
     description: "Как подготовить основание под промышленный бетонный пол: грунт, подушка, гидроизоляция, армирование и контроль перед бетонированием.",
-    category: "Технология", readTime: "7 минут", imageLabel: "Подготовленное основание перед бетонированием",
+    category: "Технология", readTime: "7 минут", imageLabel: "Подготовленное основание перед бетонированием", image: "/images/subbase-preparation.jpg",
     intro: "Даже качественный бетон не компенсирует слабое или неоднородное основание. Именно нижние слои принимают нагрузку от плиты и распределяют её на грунт, поэтому подготовка начинается не с арматуры, а с понимания условий площадки.",
     sections: [
       { title: "1. Обследование и проектные данные", paragraphs: ["До земляных работ нужны сведения о составе грунтов, уровне грунтовых вод и перепадах отметок. Для реконструируемого здания дополнительно проверяют существующие конструкции и коммуникации.", "Проектировщику передают нагрузки от стеллажей, погрузчиков, станков и транспорта. Особенно важны точечные нагрузки: они определяют толщину плиты, схему армирования и требования к основанию."], list: ["геология и расчётная несущая способность грунта", "максимальные точечные и распределённые нагрузки", "отметка чистого пола и допустимые перепады", "расположение приямков, колонн и коммуникаций"] },
@@ -22,7 +23,7 @@ const articles: Record<string, Article> = {
   "topping-ili-polimer": {
     title: "Топпинг или полимер: что выбрать для производства",
     description: "Сравнение бетонного пола с топпингом и полимерного покрытия для производства, склада, паркинга и пищевого предприятия.",
-    category: "Выбор покрытия", readTime: "8 минут", imageLabel: "Поверхность бетонного пола с упрочнённым верхним слоем",
+    category: "Выбор покрытия", readTime: "8 минут", imageLabel: "Сравнение бетонного пола с топпингом и полимерного покрытия", image: "/images/topping-vs-polymer.jpg",
     intro: "Топпинг и полимерное покрытие решают разные задачи. Первый становится частью свежей бетонной плиты, второе формирует отдельный защитный слой. Выбор зависит от механики, химии, санитарных требований и допустимых остановок производства.",
     sections: [
       { title: "Как работает топпинг", paragraphs: ["Сухая упрочняющая смесь наносится на свежеуложенный бетон и затирается бетоноотделочными машинами. Получается плотный верхний слой, устойчивый к истиранию и движению складской техники.", "Это рациональное решение для сухих складов, логистических центров, паркингов и многих производственных помещений. Но топпинг не делает бетон полностью химически стойким и не перекрывает рабочие швы."], list: ["устраивается одновременно с плитой", "не отслаивается как самостоятельная мембрана", "прост в регулярной уборке", "требует грамотного нарезания и герметизации швов"] },
@@ -34,7 +35,7 @@ const articles: Record<string, Article> = {
   "ukhod-i-remont": {
     title: "Уход и ремонт промышленных бетонных полов",
     description: "Как обслуживать промышленный бетонный пол: уборка, защита швов, контроль трещин и своевременный локальный ремонт.",
-    category: "Эксплуатация", readTime: "6 минут", imageLabel: "Механизированная уборка промышленного бетонного пола",
+    category: "Эксплуатация", readTime: "6 минут", imageLabel: "Механизированная уборка промышленного бетонного пола", image: "/images/floor-maintenance.jpg",
     intro: "Промышленный пол не требует сложного обслуживания, но нуждается в системе. Абразивная пыль, повреждённые швы и небольшие выбоины ускоряют износ, если их не замечать месяцами. Регламент помогает ремонтировать локально, не останавливая весь объект.",
     sections: [
       { title: "Ежедневная и периодическая уборка", paragraphs: ["Песок и металлическая стружка работают как абразив под колёсами техники. Их регулярно удаляют пылесосом или поломоечной машиной. Моющее средство выбирают по типу загрязнений и защитного состава на бетоне.", "После влажной уборки на поверхности не должна оставаться грязная вода. В зимний период особое внимание уделяют въездным зонам, куда техника заносит влагу, песок и противогололёдные реагенты."], list: ["сухая уборка зон интенсивного движения", "быстрое удаление масел и химических проливов", "правильная концентрация моющего средства", "чистые колёса и исправные скребки техники"] },
@@ -56,7 +57,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const { slug } = await params; const article = articles[slug]; if (!article) notFound();
   return <><SiteHeader /><main className="article-page">
     <header className="article-hero shell"><Link className="back-link" href="/#articles">← Все материалы</Link><p className="eyebrow">{article.category} · {article.readTime}</p><h1>{article.title}</h1><p className="article-intro">{article.intro}</p></header>
-    <div className="shell placeholder article-image" role="img" aria-label={`Место для фотографии: ${article.imageLabel}`}><span>Фото: {article.imageLabel}</span><small>Рекомендуемый размер 1600 × 900 px</small></div>
+    <div className="shell site-image article-image"><Image src={article.image} alt={article.imageLabel} fill priority sizes="(max-width: 1228px) calc(100vw - 48px), 1180px" /></div>
     <div className="shell article-layout"><article className="article-body">
       {article.sections.map((section) => <section key={section.title}><h2>{section.title}</h2>{section.paragraphs?.map((p) => <p key={p}>{p}</p>)}{section.list && <ul>{section.list.map((item) => <li key={item}>{item}</li>)}</ul>}{section.note && <aside>{section.note}</aside>}</section>)}
     </article><aside className="article-aside"><span>В этом материале</span><p>Время чтения: {article.readTime}</p><p>Регион: Беларусь</p><p>Обновлено: август 2026</p></aside></div>

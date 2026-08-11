@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SiteFooter, SiteHeader } from "./site-chrome";
 
 const articles = [
@@ -43,10 +44,8 @@ export default function Home() {
               <a className="text-link" href="#about">О блоге <span>↘</span></a>
             </div>
           </div>
-          <div className="hero-visual placeholder" role="img" aria-label="Место для фотографии промышленного бетонного пола">
-            <div className="grid-lines" />
-            <span>Фото: готовый промышленный пол</span>
-            <small>Рекомендуемый размер 1200 × 900 px</small>
+          <div className="hero-visual site-image">
+            <Image src="/images/hero-floor.jpg" alt="Готовый промышленный бетонный пол в логистическом комплексе" fill priority sizes="(max-width: 800px) 100vw, 46vw" />
           </div>
         </section>
 
@@ -96,8 +95,8 @@ export default function Home() {
         </section>
 
         <section className="section shell checklist">
-          <div className="placeholder wide-placeholder" role="img" aria-label="Место для фотографии устройства бетонного пола">
-            <span>Фото: устройство бетонной плиты</span><small>Рекомендуемый размер 1600 × 800 px</small>
+          <div className="site-image wide-placeholder">
+            <Image src="/images/concrete-installation.jpg" alt="Устройство промышленной бетонной плиты в производственном здании" fill sizes="(max-width: 800px) 100vw, 50vw" />
           </div>
           <div className="checklist-copy">
             <p className="eyebrow">Перед стартом работ</p>
