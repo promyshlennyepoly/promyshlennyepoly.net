@@ -8,7 +8,7 @@ export default {
     }
     return new Response(null, {
       status: 301,
-      headers: { "Location": "https://prom-poly.by/", "Cache-Control": "no-store" }
+      headers: { "Location": "https://prom-poly.by/betonnye-promyshlennye-poly/", "Cache-Control": "no-store" }
     });
   }
 };
